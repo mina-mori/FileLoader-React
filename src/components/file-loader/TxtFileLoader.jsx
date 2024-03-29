@@ -8,6 +8,7 @@ const TxtFileLoader = () => {
   const [error, setError] = useState('');
 
   const handleTxtFileChange = (event) => {
+    setShowResults(false);
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
@@ -40,9 +41,10 @@ const TxtFileLoader = () => {
   };
 
   const countWordsInFile = (content) => {
-    const words = content.split(/\s+/);
+    const words = content.toLowerCase().split(/\s+|\p{P}/u); // split by whitespace or punctuations and convert to lowercase for case-insensitive comparison
     const wordCountMap = {};
     words.forEach((word) => {
+      if (word.trim() === '') return;
       wordCountMap[word] = (wordCountMap[word] || 0) + 1;
     });
     setWordCountObj(wordCountMap);

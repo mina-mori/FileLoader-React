@@ -55,11 +55,11 @@ describe('TxtFileLoader component', () => {
       expect(wordCount).toBeInTheDocument();
     });
     await waitFor(() => {
-      const wordHello = screen.getByText('Hello: 2');
+      const wordHello = screen.getByText('hello: 2');
       expect(wordHello).toBeInTheDocument();
     });
     await waitFor(() => {
-      const wordJavaScript = screen.getByText('JavaScript.: 1');
+      const wordJavaScript = screen.getByText('javascript: 1');
       expect(wordJavaScript).toBeInTheDocument();
     });
   });
